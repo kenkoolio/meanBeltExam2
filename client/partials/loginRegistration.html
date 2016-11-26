@@ -1,0 +1,70 @@
+<div class='row'>
+  <div class='col-md-6' id='loginDiv' ng-controller='loginController'>
+    <h3>Login</h3>
+    <div ng-if='baderrors'>
+      <p ng-repeat="error in baderrors" ng-bind="error"></p>
+    </div>
+    <form ng-submit="login()" novalidate>
+      <div class='form-group'>
+        <label for='loginEmail'>
+          Email
+          <input class="form-control" type='email' ng-model='user.email' id='loginEmail' required>
+        </label>
+      </div><!-- form group -->
+
+      <div class='form-group'>
+        <label for='loginPassword'>
+          Password
+          <input class="form-control" type='password' ng-model='user.password' id='loginPassword' required>
+        </label>
+      </div><!-- form group -->
+      <input class='btn btn-lg btn-success' type='submit' value='Login'>
+    </form>
+  </div>
+
+  <div class='col-md-6' id='registrationDiv' ng-controller='usersController'>
+    <h3>New Account</h3>
+    <div ng-if='baderrors'>
+      <p ng-repeat='error in baderrors' ng-bind='error'></p>
+    </div>
+    <form ng-submit='create()' novalidate>
+      <div class='form-group'>
+        <label for='regEmail'>
+          Email
+          <input class="form-control" type='email' id='regEmail' ng-model='newUser.email' required>
+        </label>
+      </div><!-- form group -->
+      <div class='form-group'>
+        <label for='regFirstName'>
+          First Name
+          <input class="form-control" type='text' id='regFirstName' ng-model='newUser.first_name' required>
+        </label>
+      </div><!-- form group -->
+      <div class='form-group'>
+        <label for='regLastName'>
+          Last Name
+          <input class="form-control" type='text' id='regLastName' ng-model='newUser.last_name' required>
+        </label>
+      </div><!-- form group -->
+      <div class='form-group'>
+        <label for='regPassword'>
+          Password
+          <input class="form-control" type='password' id='regPassword' ng-model='newUser.password' required>
+        </label>
+      </div><!-- form group -->
+      <div class='form-group'>
+        <label for='regPasswordConfirmation'>
+          Password Confirmation
+          <input class="form-control" type='password' id='regPasswordConfirmation' ng-model='newUser.password_confirmation' required>
+        </label>
+      </div><!-- form group -->
+      <div class='form-group'>
+        <label for='regBirthday'>
+          Birthday
+          <input class="form-control" type='date' max="2016-04-20" id='regBirthday' ng-model='newUser.birthday' required>
+        </label>
+      </div><!-- form group -->
+      <input class='btn btn-lg btn-success' type='submit' value='Register'>
+    </form>
+  </div>
+</div><!-- row -->

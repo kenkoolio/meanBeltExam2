@@ -1,0 +1,21 @@
+{
+  "name": "meanbeltexam",
+  "version": "1.0.0",
+  "description": "mean belt exam",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "kenkoolio",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "mongoose": "^4.6.8",
+    "path": "^0.12.7"
+  }
+}
