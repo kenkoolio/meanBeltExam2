@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var Schema = mongoose.Schema;
 
 var usersSchema = new mongoose.Schema({
+    buckets: [{
+      type: Schema.Types.ObjectId,
+      ref:'Bucket'
+    }],
     first_name: {
         type: String,
         required: true

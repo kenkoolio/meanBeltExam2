@@ -2,6 +2,14 @@ app.factory('userFactory', ['$http', function($http){
 
 
   function UserFactory(){
+    this.index = function(callback){
+      $http.get('/users').then(function(returnedData){
+        if(typeof(callback)=='function'){
+          callback(returnedData.data);
+        };
+      });
+    };
+
     this.login = function(User, callback){
       $http.post('/login', User).then(function(returnedData){
         if(typeof(returnedData.data.error) !== 'undefined'){

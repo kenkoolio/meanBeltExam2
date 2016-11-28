@@ -1,4 +1,42 @@
-app.controller('usersController', ['$scope', 'userFactory', '$location', '$cookies', function($scope, userFactory, $location, $cookies){
+app.controller('usersController', ['$scope', 'userFactory', 'bucketFactory', '$location', '$cookies', '$routeParams', function($scope, userFactory, bucketFactory, $location, $cookies, $routeParams){
+
+  $scope.userInSession = $cookies.getObject('user');
+  if (typeof($scope.userInSession)=='undefined'){
+    $location.url('/');
+  };
+
+  $scope.logout = function(){
+    $cookies.remove('user');
+    $location.url('/');
+  };
+
+  $scope.home = function(){
+    $location.url('/dashboard');
+  };
+
+  function getUser(userId){
+    bucketFactory.show(userId, function(returnedData){
+      $scope.user = returnedData;
+      $scope.bucketList = $scope.user.buckets;
+    });
+  };
+
+  var showUserId = $routeParams.id;
+
+  if(typeof(showUserId)!=='undefined'){
+    getUser(showUserId);
+  }
+
+  $scope.markDone = function(bucketItemId){
+    bucketFactory.update(bucketItemId, function(returnedData){
+      if(typeof(returnedData.Success)!=='undefined'){
+        console.log(returnedData.Success);
+        location.reload();
+      };
+    });
+  };
+
+
   $scope.newUser = {};
 
   $scope.create = function(){
@@ -24,7 +62,7 @@ app.controller('usersController', ['$scope', 'userFactory', '$location', '$cooki
 
         } else if (typeof(returnedData.Success) !== 'undefined'){
           $cookies.putObject('user', returnedData.Success);
-          $location.url('/results');
+          $location.url('/dashboard');
         };
       });
     } else {
