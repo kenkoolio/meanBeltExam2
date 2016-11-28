@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    db = 'mongodb://localhost/meanBeltDB2';
+    db = 'mongodb://localhost/meanBeltDB3';
 
 mongoose.connect(db);
 
