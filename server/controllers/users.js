@@ -18,7 +18,7 @@ function UsersController() {
           res.json({'error': err});
         } else if(user && user.validPassword(password)) {
           res.json({'user': user});
-        } else if(user && !user.validPassword(password)){
+        } else {
           res.json({'error': {'errors': {'bad login': {'message': 'Invalid email or password'}}}});
         }
       });
@@ -26,10 +26,11 @@ function UsersController() {
 
     this.create = function(req, res) {
         var newUser = new User();
+        var pw_hash = newUser.generateHash(req.body.password);
         newUser.email = req.body.email;
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
-        newUser.password = req.body.password;
+        newUser.password = pw_hash;
         newUser.birthday = req.body.birthday;
         newUser.save(function(err, data){
           if(err){
