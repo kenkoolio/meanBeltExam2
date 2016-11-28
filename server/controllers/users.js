@@ -18,7 +18,7 @@ function UsersController() {
           res.json({'error': err});
         } else if(user && user.validPassword(password)) {
           res.json({'user': user});
-        } else {
+        } else if(user && !user.validPassword(password)){
           res.json({'error': {'errors': {'bad login': {'message': 'Invalid email or password'}}}});
         }
       });

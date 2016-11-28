@@ -14,8 +14,6 @@ function BucketsController(){
     });
   };
 
-
-
   this.create = function(req, res){
     var newBucket = new Bucket();
     var creator = req.body.user1;
