@@ -61,6 +61,7 @@ app.controller('bucketsController', ['$scope', 'bucketFactory', 'userFactory', '
             };
           };
         } else if (typeof(returnedData.Success)!=='undefined'){
+          console.log("Success: ", returnedData.Success);
           location.reload();
         };
       });

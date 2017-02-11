@@ -33,7 +33,7 @@ app.factory('bucketFactory', ['$http', function($http){
           };
         } else if (typeof(returnedData.data.Success)!=='undefined'){
           if(typeof(callback)=='function'){
-            callback({'Success': returnedData.data.Success || 'Yay success'});
+            callback({'Success': returnedData.data.Success});
           };
         };
       });
