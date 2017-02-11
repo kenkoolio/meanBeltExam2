@@ -1,5 +1,6 @@
 app.controller('bucketsController', ['$scope', 'bucketFactory', 'userFactory', '$location', '$cookies', function($scope, bucketFactory, userFactory, $location, $cookies){
 
+  // // for user personal dashboard
   $scope.userInSession = $cookies.getObject('user');
   if (typeof($scope.userInSession)=='undefined'){
     $location.url('/');

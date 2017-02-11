@@ -15,7 +15,7 @@ app.use(express.static(appRoot + '/bower_components'));
 require(appRoot + '/server/config/mongoose.js');
 require(appRoot + '/server/config/routes.js')(app);
 
-var port = 5000;
+var port = 5003;
 app.listen(port, function() {
-  console.log('Server on port: ' + 5000);
+  console.log('Server on port: ' + 5003);
 });

@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='headerz'>
     <div class='row'>
-      <h2>Bucket List</h2>
+      <h2>Mean Bucket List</h2>
       <button class='btn btn-primary' ng-click='home()'>Home</button>
       <button class='btn btn-danger' ng-click='logout()'>Logout</button>
     </div>
@@ -10,27 +10,6 @@
   <div class='row'>
     <h1>Welcome, {{userInSession.first_name}}! </h1>
   </div><!-- row -->
-
-  <div class='bucketForm'>
-    <div class='row'>
-      <div ng-if='badErrors'>
-        <p ng-repeat='error in badErrors' ng-bind="error"></p>
-      </div>
-      <form ng-submit='create()' novalidate>
-        <label for='title'></label>
-        <input type='text' ng-model='newBucket.title' id='title' placeholder='Title' required>
-        <label for='description'></label>
-        <input type='text' ng-model='newBucket.description' id='description' placeholder='Description' required>
-        <label for='tagAUser'></label>
-        <select ng-model='newBucket.taggedUser' id='tagAUser'>
-          <option value="" disabled selected='selected'>Tag a Friend</option>
-          <option ng-repeat='user in allUsers' value='{{user._id}}'>{{user.first_name}}
-          </option>
-        </select>
-        <input type='submit' value='Add to List'>
-      </form>
-    </div><!-- row -->
-  </div><!-- bucketform  -->
 
   <div class='bucketList'>
     <div class='row'>
@@ -48,6 +27,26 @@
       </div>
     </div><!-- row -->
   </div><!-- bucketList-->
+
+  <div class='bucketForm'>
+    <div class='row'>
+      <div ng-if='badErrors'>
+        <p ng-repeat='error in badErrors' ng-bind="error"></p>
+      </div>
+      <form ng-submit='create()' novalidate>
+        <label for='title'></label>
+        <input type='text' ng-model='newBucket.title' id='title' placeholder='Title' required>
+        <label for='description'></label>
+        <input type='text' ng-model='newBucket.description' id='description' placeholder='Description' required>
+        <label for='tagAUser'></label>
+        <select ng-model='newBucket.taggedUser' id='tagAUser'>
+          <option value="" disabled selected='selected'>Tag a Friend</option>
+          <option ng-repeat='user in allUsers' value='{{user._id}}'>{{user.first_name}}</option>
+        </select>
+        <input type='submit' value='Add to List'>
+      </form>
+    </div><!-- row -->
+  </div><!-- bucketform  -->
 
   <div class='otherUsers'>
     <div class='row'>
