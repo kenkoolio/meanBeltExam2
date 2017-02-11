@@ -36,7 +36,12 @@ app.factory('bucketFactory', ['$http', function($http){
             callback({'Success': returnedData.data.Success});
           };
         };
-      });
+      },
+        //on reject
+        function(e) {
+          console.log("Rejected with: ", e);
+        }
+      );
     };
   };
 
