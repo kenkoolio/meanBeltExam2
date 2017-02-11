@@ -1,59 +1,73 @@
 <div class='container'>
+
   <div class='headerz'>
     <div class='row'>
-      <h2>Mean Bucket List</h2>
-      <button class='btn btn-primary' ng-click='home()'>Home</button>
-      <button class='btn btn-danger' ng-click='logout()'>Logout</button>
+      <h1>Mean Bucket List</h1>
+      <div class='nav-buttons pull-right'>
+        <button class='btn btn-primary' ng-click='home()'>Home</button>
+        <button class='btn btn-danger' ng-click='logout()'>Logout</button>
+      </div><!-- nav buttons -->
     </div>
   </div><!-- headerz -->
 
-  <div class='row'>
-    <h1>Welcome, {{userInSession.first_name}}! </h1>
-  </div><!-- row -->
-
-  <div class='bucketList'>
+  <div class='bodyz'>
     <div class='row'>
-      <p>Before I die I want to... </p>
-      <div ng-if="bucketList">
-        <div class='listItem' ng-repeat="item in bucketList">
-          <p ng-init="itemId = item._id">
-            <input ng-if="item.completed == 'true'" type='checkbox' checked disabled>
-            <input ng-if="item.completed == 'false'"  type='checkbox' ng-change='markDone(itemId)' ng-model="item.checkbox">
-            <span>{{item.title}} - </span>
-            <span>{{item.description}} - </span>
-            <span>{{item.created_at | date}}</span>
-          </p>
+      <h2>Welcome back, {{userInSession.first_name}}! </h2>
+    </div><!-- row -->
+
+    <div class='bucketListDiv'>
+      <div class='row'>
+        <h4>Before I die I want to... </h4>
+        <div class='bucketList col-md-6' ng-if="bucketList">
+
+          <div class='listItem' ng-repeat="item in bucketList">
+            <p ng-if="item.completed == 'false'" ng-init="itemId = item._id">
+              <input ng-if="item.completed == 'false'"  type='checkbox' ng-change='markDone(itemId)' ng-model="item.checkbox">
+              <span>{{item.title}} - </span>
+              <span>{{item.description}}</span>
+            </p>
+          </div><!-- for undone buckets -->
+
+          <div class='listItem' ng-repeat="item in bucketList">
+            <p ng-if="item.completed == 'true'" ng-init="itemId = item._id">
+              <input ng-if="item.completed == 'true'" type='checkbox' checked disabled>
+              <span>{{item.title}} - </span>
+              <span>{{item.description}}</span>
+            </p>
+          </div><!-- finished buckets -->
+        </div><!-- bucketList -->
+      </div><!-- row -->
+    </div><!-- bucketListDiv-->
+
+    <div class='bucketFormDiv'>
+      <div class='row'>
+        <h4>Add new bucket</h4>
+        <div ng-if='badErrors'>
+          <p ng-repeat='error in badErrors' ng-bind="error"></p>
         </div>
-      </div>
-    </div><!-- row -->
-  </div><!-- bucketList-->
+        <form class="bucketForm col-md-6" ng-submit='create()' novalidate>
+          <label for='title'></label>
+          <input type='text' ng-model='newBucket.title' id='title' placeholder='Title' required>
+          <label for='description'></label>
+          <input type='text' ng-model='newBucket.description' id='description' placeholder='Description' required>
+          <label for='tagAUser'></label>
+          <select ng-model='newBucket.taggedUser' id='tagAUser'>
+            <option value="" disabled selected='selected'>Tag a Friend</option>
+            <option ng-repeat='user in allUsers' value='{{user._id}}'>{{user.first_name}}</option>
+          </select>
+          <input class='btn btn-xs btn-primary' type='submit' value='Add to List'>
+        </form><!-- bucketForm -->
+      </div><!-- row -->
+    </div><!-- bucketformDiv  -->
 
-  <div class='bucketForm'>
-    <div class='row'>
-      <div ng-if='badErrors'>
-        <p ng-repeat='error in badErrors' ng-bind="error"></p>
-      </div>
-      <form ng-submit='create()' novalidate>
-        <label for='title'></label>
-        <input type='text' ng-model='newBucket.title' id='title' placeholder='Title' required>
-        <label for='description'></label>
-        <input type='text' ng-model='newBucket.description' id='description' placeholder='Description' required>
-        <label for='tagAUser'></label>
-        <select ng-model='newBucket.taggedUser' id='tagAUser'>
-          <option value="" disabled selected='selected'>Tag a Friend</option>
-          <option ng-repeat='user in allUsers' value='{{user._id}}'>{{user.first_name}}</option>
-        </select>
-        <input type='submit' value='Add to List'>
-      </form>
-    </div><!-- row -->
-  </div><!-- bucketform  -->
+    <div class='otherUsersDiv'>
+      <div class='row'>
+        <h4>List of other users (Click to view profile)</h4>
+        <div class="otherUsers col-md-6" ng-if='allUsers'>
+          <p ng-repeat="user in allUsers"><a ng-href='#/show/{{user._id}}'>{{user.first_name}}</a></p>
+        </div><!-- other Users -->
+      </div><!-- row -->
+    </div><!-- other Users Div -->
+  </div><!-- bodyz -->
 
-  <div class='otherUsers'>
-    <div class='row'>
-      <p>List of other users (Click to view profile)</p>
-      <div ng-if='allUsers'>
-        <p ng-repeat="user in allUsers"><a ng-href='#/show/{{user._id}}'>{{user.first_name}}</a></p>
-      </div>
-    </div><!-- row -->
-  </div><!-- other Users -->
 </div><!-- container -->
