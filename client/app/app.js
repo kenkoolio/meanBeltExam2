@@ -1,6 +1,8 @@
 var app = angular.module('app', ['ngRoute','ngCookies']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider){
+  $locationProvider.hashPrefix('!');
+
   $routeProvider
   .when('/', {
     templateUrl: "/partials/loginRegistration.html"
