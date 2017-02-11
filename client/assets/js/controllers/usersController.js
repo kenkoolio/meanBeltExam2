@@ -1,5 +1,8 @@
 app.controller('usersController', ['$scope', 'userFactory', 'bucketFactory', '$location', '$cookies', '$routeParams', function($scope, userFactory, bucketFactory, $location, $cookies, $routeParams){
 
+  // //for show a user
+
+  //user in session
   $scope.userInSession = $cookies.getObject('user');
   if (typeof($scope.userInSession)=='undefined'){
     $location.url('/');
@@ -14,6 +17,16 @@ app.controller('usersController', ['$scope', 'userFactory', 'bucketFactory', '$l
     $location.url('/dashboard');
   };
 
+  $scope.markDone = function(bucketItemId){
+    bucketFactory.update(bucketItemId, function(returnedData){
+      if(typeof(returnedData.Success)!=='undefined'){
+        console.log(returnedData.Success);
+        location.reload();
+      };
+    });
+  };
+
+  //show this one user
   function getUser(userId){
     bucketFactory.show(userId, function(returnedData){
       $scope.user = returnedData;
@@ -27,16 +40,10 @@ app.controller('usersController', ['$scope', 'userFactory', 'bucketFactory', '$l
     getUser(showUserId);
   }
 
-  $scope.markDone = function(bucketItemId){
-    bucketFactory.update(bucketItemId, function(returnedData){
-      if(typeof(returnedData.Success)!=='undefined'){
-        console.log(returnedData.Success);
-        location.reload();
-      };
-    });
-  };
 
 
+
+  // for registration
   $scope.newUser = {};
 
   $scope.create = function(){
