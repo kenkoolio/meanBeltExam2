@@ -1,6 +1,8 @@
 var app = angular.module('app', ['ngRoute','ngCookies']);
 
-app.config(function($routeProvider){
+app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+  $locationProvider.html5Mode(true);
+
   $routeProvider
   .when('/', {
     templateUrl: "/partials/loginRegistration.html"
@@ -16,4 +18,4 @@ app.config(function($routeProvider){
   .otherwise({
     redirectTo: '/'
   });
-});
+}]);
