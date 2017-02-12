@@ -63,14 +63,18 @@ function BucketsController(){
             };
           });
         } else if(typeof(req.body.user2)=='undefined'){
+          console.log("DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
+
           newBucket.save(function(err, bucket){
             if(err){
               res.json({'Error': err});
+              console.log('Error 1', err);
             } else {
               user.buckets.push(newBucket);
               user.save(function(err, resData){
                 if(err){
                   res.json({'Error': err});
+                  console.log('Error 2', err);
                 } else {
                   res.json({
                     'Success':
