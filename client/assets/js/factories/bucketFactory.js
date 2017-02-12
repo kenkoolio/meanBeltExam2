@@ -43,7 +43,7 @@ app.factory('bucketFactory', ['$http', function($http){
           };
         };
       }).catch(function(e){
-          console.log("Rejected with: ", JSON.parse(e));
+          console.log("Rejected with: ", e);
         })
 
         // .then(function(wtf){ //doesnt get here
