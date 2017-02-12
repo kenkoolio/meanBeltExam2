@@ -12,8 +12,8 @@ app.factory('bucketFactory', ['$http', function($http){
               callback({"Success": returnedData.data.Success});
           };
         };
-    });
-  };
+      });
+    };
 
     this.show = function(userId, callback){
       $http.get('/buckets/'+userId).then(function(returnedData){
@@ -29,7 +29,7 @@ app.factory('bucketFactory', ['$http', function($http){
       // $http.post('/buckets', newBucketData)
       $http({
         method: "post",
-        url: "/buckets",
+        url: "/buckets/",
         data: newBucketData,
         headers: {'Content-Type': 'application/json'}
       }).then(function(returnedData){
@@ -42,15 +42,9 @@ app.factory('bucketFactory', ['$http', function($http){
             callback({'Success': returnedData.data.Success});
           };
         };
-      }
-      // ,
-      //   //on reject
-      //   function(e) {
-      //     console.log("Rejected with: ", e);
-      //   }
-      ).catch(function(e){
+      }).catch(function(e){
           console.log("Rejected with: ", e);
-        }).then(function(wtf){
+        }).then(function(wtf){ //doesnt get here
           if(typeof(callback)=='function'){
             callback({'Success': wtf});
           };
