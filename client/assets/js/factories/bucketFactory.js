@@ -52,7 +52,7 @@ app.factory('bucketFactory', ['$http', function($http){
           console.log("Rejected with: ", e);
         }).then(function(returnedData){
           if(typeof(callback)=='function'){
-            callback({'Success': returnedData.data.Success});
+            callback({'Success': returnedData});
           };
         });
     };
