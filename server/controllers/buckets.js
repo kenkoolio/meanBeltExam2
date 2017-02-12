@@ -27,7 +27,7 @@ function BucketsController(){
         newBucket.completed = 'false';
 
         console.log("First time: DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
-        if(typeof(req.body.user2)!==null){
+        if(req.body.user2){
           User.findOne({_id: req.body.user2}, function(err, user2){
 
             console.log("I shouldn't be here if I am null: ", user2);
