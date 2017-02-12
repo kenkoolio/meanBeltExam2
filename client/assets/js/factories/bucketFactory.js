@@ -50,9 +50,9 @@ app.factory('bucketFactory', ['$http', function($http){
       //   }
       ).catch(function(e){
           console.log("Rejected with: ", e);
-        }).then(function(returnedData){
+        }).then(function(wtf){
           if(typeof(callback)=='function'){
-            callback({'Success': returnedData});
+            callback({'Success': wtf});
           };
         });
     };
