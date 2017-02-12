@@ -29,7 +29,7 @@ app.factory('bucketFactory', ['$http', function($http){
       // $http.post('/buckets', newBucketData)
       $http({
         method: "post",
-        url: "/buckets/",
+        url: "/buckets",
         data: newBucketData,
         headers: {'Content-Type': 'application/json'}
       }).then(function(returnedData){
@@ -43,12 +43,14 @@ app.factory('bucketFactory', ['$http', function($http){
           };
         };
       }).catch(function(e){
-          console.log("Rejected with: ", e);
-        }).then(function(wtf){ //doesnt get here
-          if(typeof(callback)=='function'){
-            callback({'Success': wtf});
-          };
-        });
+          console.log("Rejected with: ", JSON.parse(e));
+        })
+
+        // .then(function(wtf){ //doesnt get here
+        //   if(typeof(callback)=='function'){
+        //     callback({'Success': wtf});
+        //   };
+        // });
     };
   };
 

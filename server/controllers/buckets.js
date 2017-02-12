@@ -62,7 +62,7 @@ function BucketsController(){
               });
             };
           });
-        } else {
+        } else if(typeof(req.body.user2)=='undefined'){
           newBucket.save(function(err, bucket){
             if(err){
               res.json({'Error': err});
