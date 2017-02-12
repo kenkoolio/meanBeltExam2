@@ -26,7 +26,6 @@ app.factory('bucketFactory', ['$http', function($http){
 
 
     this.create = function(newBucketData, callback){
-      // $http.post('/buckets', newBucketData)
       $http({
         method: "post",
         url: "/buckets",
@@ -44,13 +43,7 @@ app.factory('bucketFactory', ['$http', function($http){
         };
       }).catch(function(e){
           console.log("Rejected with: ", e);
-        })
-
-        // .then(function(wtf){ //doesnt get here
-        //   if(typeof(callback)=='function'){
-        //     callback({'Success': wtf});
-        //   };
-        // });
+        });
     };
   };
 

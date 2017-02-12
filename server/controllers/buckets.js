@@ -26,12 +26,9 @@ function BucketsController(){
         newBucket.description = req.body.description;
         newBucket.completed = 'false';
 
-        console.log("First time: DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
+        // if there is a tagged user
         if(req.body.user2){
           User.findOne({_id: req.body.user2}, function(err, user2){
-
-            console.log("I shouldn't be here if I am null: ", user2);
-
             if(err){
               console.log(err);
             } else {
@@ -66,19 +63,16 @@ function BucketsController(){
               });
             };
           });
+          //if no tagged user
         } else {
-          console.log("Second time: DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
-
           newBucket.save(function(err, bucket){
             if(err){
               res.json({'Error': err});
-              console.log('Error 1', err);
             } else {
               user.buckets.push(newBucket);
               user.save(function(err, resData){
                 if(err){
                   res.json({'Error': err});
-                  console.log('Error 2', err);
                 } else {
                   res.json({
                     'Success':
