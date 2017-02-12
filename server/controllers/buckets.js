@@ -72,7 +72,7 @@ function BucketsController(){
                 if(err){
                   res.json({'Error': err});
                 } else {
-                  res.json({
+                  resolve({
                     'Success':
                     {
                       'creator' : resData,
