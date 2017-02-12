@@ -27,11 +27,11 @@ function BucketsController(){
         newBucket.completed = 'false';
 
         console.log("First time: DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
-        if(typeof(req.body.user2)!=='undefined'){
+        if(typeof(req.body.user2)!==null){
           User.findOne({_id: req.body.user2}, function(err, user2){
 
             console.log("I shouldn't be here if I am null: ", user2);
-            
+
             if(err){
               console.log(err);
             } else {
@@ -66,8 +66,8 @@ function BucketsController(){
               });
             };
           });
-        } else if(typeof(req.body.user2)=='undefined'){
-          console.log("DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
+        } else {
+          console.log("Second time: DEBUG USER 2 START HERE --------", typeof(req.body.user2), req.body.user2);
 
           newBucket.save(function(err, bucket){
             if(err){
