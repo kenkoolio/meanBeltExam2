@@ -25,6 +25,7 @@ function BucketsController(){
         newBucket.title = req.body.title;
         newBucket.description = req.body.description;
         newBucket.completed = 'false';
+        console.log("USER 2 DEBUG START HERE ----------", typeof(req.body.user2), req.body.user2, "END HERE ----------");
         if(typeof(req.body.user2)!=='undefined'){
           User.findOne({_id: req.body.user2}, function(err, user2){
             if(err){
@@ -45,7 +46,14 @@ function BucketsController(){
                         if(err){
                           res.json({'Error': err});
                         } else {
-                          res.json({'Success': resData2});
+                          res.json({
+                            'Success':
+                              {
+                                'creator' : resData1,
+                                'taggedFriend' : resData2,
+                                'bucket' : bucket
+                              }
+                          });
                         };
                       });
                     };
@@ -64,7 +72,13 @@ function BucketsController(){
                 if(err){
                   res.json({'Error': err});
                 } else {
-                  res.json({'Success': resData});
+                  res.json({
+                    'Success':
+                    {
+                      'creator' : resData,
+                      'bucket' : bucket
+                    }
+                  });
                 };
               });
             };
