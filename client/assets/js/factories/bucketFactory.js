@@ -26,7 +26,13 @@ app.factory('bucketFactory', ['$http', function($http){
 
 
     this.create = function(newBucketData, callback){
-      $http.post('/buckets', newBucketData).then(function(returnedData){
+      // $http.post('/buckets', newBucketData)
+      $http({
+        method: "post",
+        url: "/buckets",
+        data: newBucketData,
+        headers: {'Content-Type': 'application/json'}
+      }).then(function(returnedData){
         if(typeof(returnedData.data.Error)!=='undefined'){
           if(typeof(callback)=='function'){
             callback({'Error': returnedData.data.Error});
