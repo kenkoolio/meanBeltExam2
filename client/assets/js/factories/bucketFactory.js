@@ -42,12 +42,19 @@ app.factory('bucketFactory', ['$http', function($http){
             callback({'Success': returnedData.data.Success});
           };
         };
-      },
-        //on reject
-        function(e) {
-          console.log("Rejected with: ", e);
-        }
-      );
+      }
+      // ,
+      //   //on reject
+      //   function(e) {
+      //     console.log("Rejected with: ", e);
+      //   }
+      ).catch(e){
+        console.log("Rejected with: ", e);
+      }.then(returnedData){
+        if(typeof(callback)=='function'){
+          callback({'Success': returnedData.data.Success});
+        };
+      };
     };
   };
 
