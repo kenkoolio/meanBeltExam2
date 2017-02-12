@@ -48,13 +48,13 @@ app.factory('bucketFactory', ['$http', function($http){
       //   function(e) {
       //     console.log("Rejected with: ", e);
       //   }
-      ).catch(e){
-        console.log("Rejected with: ", e);
-      }.then(returnedData){
-        if(typeof(callback)=='function'){
-          callback({'Success': returnedData.data.Success});
-        };
-      };
+      ).catch(function(e){
+          console.log("Rejected with: ", e);
+        }).then(function(returnedData){
+          if(typeof(callback)=='function'){
+            callback({'Success': returnedData.data.Success});
+          };
+        });
     };
   };
 
